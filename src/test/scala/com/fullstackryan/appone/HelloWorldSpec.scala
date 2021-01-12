@@ -1,6 +1,7 @@
 package com.fullstackryan.appone
 
 import cats.effect.IO
+import com.fullstackryan.appone.routing.ApponeRoutes
 import org.http4s._
 import org.http4s.implicits._
 import munit.CatsEffectSuite

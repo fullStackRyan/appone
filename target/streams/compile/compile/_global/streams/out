@@ -1,4 +1,28 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/ApponeServer.scala:19:7: local val bookAlg in value $anonfun is never used[0m
-[0m[[0m[31merror[0m] [0m[0m      bookAlg = BookSwap.buildInstance[F][0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:4:39: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport com.fullstackryan.appone.repo.{HelloWorld, Jokes}[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:4:51: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport com.fullstackryan.appone.repo.{HelloWorld, Jokes}[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:8:21: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport cats.effect.{ConcurrentEffect, Timer}[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:8:39: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport cats.effect.{ConcurrentEffect, Timer}[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:11:12: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport fs2.Stream[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:12:32: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.client.blaze.BlazeClientBuilder[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:13:29: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.implicits._[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:14:32: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.server.blaze.BlazeServerBuilder[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:15:37: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.server.middleware.Logger[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m9 errors found[0m
