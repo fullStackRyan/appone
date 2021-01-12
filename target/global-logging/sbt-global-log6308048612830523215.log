@@ -1,0 +1,79 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(70d899f1-96ca-4e50-8d8b-25e4f8a7d7fc), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[33mwarn[0m] [0m[0mCanceling execution...[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.RejectedExecutionException[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.ConcurrentRestrictions$$anon$4.submit(ConcurrentRestrictions.scala:242)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.submit(Execute.scala:282)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.ready(Execute.scala:262)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.notifyDone(Execute.scala:201)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.$anonfun$retire$2(Execute.scala:172)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.$anonfun$retire$2$adapted(Execute.scala:171)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List.foreach(List.scala:431)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.retire(Execute.scala:171)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.$anonfun$work$2(Execute.scala:299)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute$$anon$1.process(Execute.scala:27)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.next$1(Execute.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.processAll(Execute.scala:127)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.runKeep(Execute.scala:95)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.EvaluateTask$.liftedTree1$1(EvaluateTask.scala:476)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.EvaluateTask$.run$1(EvaluateTask.scala:475)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.EvaluateTask$.runTask(EvaluateTask.scala:498)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.Aggregation$.$anonfun$timedRun$4(Aggregation.scala:101)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.EvaluateTask$.withStreams(EvaluateTask.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.Aggregation$.timedRun(Aggregation.scala:99)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.Aggregation$.runTasks(Aggregation.scala:113)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.Aggregation$.$anonfun$applyDynamicTasks$4(Aggregation.scala:181)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Command$.$anonfun$applyEffect$2(Command.scala:145)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.Act$.$anonfun$actParser0$4(Act.scala:436)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Command$.process(Command.scala:189)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.$anonfun$processCommand$5(MainLoop.scala:242)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Option.getOrElse(Option.scala:189)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.process$1(MainLoop.scala:242)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.processCommand(MainLoop.scala:266)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.$anonfun$next$5(MainLoop.scala:162)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.State$StateOpsImpl$.runCmd$1(State.scala:289)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.State$StateOpsImpl$.process$extension(State.scala:325)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.$anonfun$next$4(MainLoop.scala:162)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.next(MainLoop.scala:162)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.run(MainLoop.scala:143)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.$anonfun$runWithNewLog$1(MainLoop.scala:118)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.io.Using.apply(Using.scala:27)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.runWithNewLog(MainLoop.scala:111)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.runAndClearLast(MainLoop.scala:65)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.runLoggedLoop(MainLoop.scala:50)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.MainLoop$.runLogged(MainLoop.scala:41)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.StandardMain$.runManaged(Main.scala:191)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.xMain$.$anonfun$run$8(Main.scala:102)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:62)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Console$.withIn(Console.scala:230)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.Terminal$.withIn(Terminal.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.Terminal$.$anonfun$withStreams$1(Terminal.scala:347)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:62)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Console$.withOut(Console.scala:167)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.Terminal$.$anonfun$withOut$2(Terminal.scala:547)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:62)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Console$.withErr(Console.scala:196)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.Terminal$.withOut(Terminal.scala:547)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.Terminal$.withStreams(Terminal.scala:347)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.xMain$.run(Main.scala:86)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.reflect.Method.invoke(Method.java:564)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.XMainConfiguration.run(XMainConfiguration.scala:83)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.xMain.run(Main.scala:46)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$$anonfun$run$1.apply(Launch.scala:111)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$.withContextLoader(Launch.scala:131)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$.run(Launch.scala:111)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$$anonfun$apply$1.apply(Launch.scala:37)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$.launch(Launch.scala:120)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Launch$.apply(Launch.scala:20)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Boot$.runImpl(Boot.scala:56)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Boot$.main(Boot.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at xsbt.boot.Boot.main(Boot.scala)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.RejectedExecutionException[0m
+[0m[[0m[31merror[0m] [0m[0mUse 'last' for the full log.[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
+[0m[[0m[0minfo[0m] [0m[0mshutting down sbt server[0m
