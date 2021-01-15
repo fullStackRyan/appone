@@ -43,6 +43,14 @@ object BookSwapQueries {
       .update
   }
 
+  def delete(book: Book): doobie.Update0 = {
+    sql"""
+         |DELETE FROM book
+         |WHERE id=${book.id}
+       """.stripMargin
+      .update
+  }
+
 
 }
 

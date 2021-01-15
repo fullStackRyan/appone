@@ -27,7 +27,7 @@ object BookSwap {
 
     override def update(book: Book): F[Int] = BookSwapQueries.update(book).run.transact(xa)
 
-    override def delete(book: Book): F[Int] = ???
+    override def delete(book: Book): F[Int] = BookSwapQueries.delete(book).run.transact(xa)
   }
 
 

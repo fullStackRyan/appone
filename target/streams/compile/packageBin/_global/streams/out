@@ -138,6 +138,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/model/Book$anon$lazy$macro$13$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$bookRoutes$8.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$bookRoutes$8.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$helloWorldRoutes$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$helloWorldRoutes$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$jokeRoutes$1.class[0m
@@ -148,8 +150,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$bookRoutes$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes$$anonfun$bookRoutes$6.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$$anon$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/ryanmcavoy/fullStackRyan/appone/target/scala-2.13/classes/com/fullstackryan/appone/routing/ApponeRoutes$$anon$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/fullstackryan/appone/routing/ApponeRoutes$.class[0m
