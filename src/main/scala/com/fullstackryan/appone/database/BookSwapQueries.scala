@@ -34,6 +34,15 @@ object BookSwapQueries {
       .update
   }
 
+  def update(book: Book): doobie.Update0 = {
+    sql"""
+         |UPDATE book
+         |SET title = ${book.title}, author = ${book.author}, yearOfRelease = ${book.yearOfRelease}
+         |WHERE id = ${book.id}
+       """.stripMargin
+      .update
+  }
+
 
 }
 
