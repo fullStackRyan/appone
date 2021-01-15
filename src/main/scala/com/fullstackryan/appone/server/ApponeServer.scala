@@ -1,37 +1,47 @@
 package com.fullstackryan.appone.server
 
-import cats.effect.{ConcurrentEffect, Timer}
+import cats.effect.{ConcurrentEffect, ContextShift, Sync, Timer}
 import cats.implicits._
-import com.fullstackryan.appone.repo.{HelloWorld, Jokes}
+import com.fullstackryan.appone.config.{Config, LoadConfig}
+import com.fullstackryan.appone.database.Database
+import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
 import com.fullstackryan.appone.routing.ApponeRoutes
 import fs2.Stream
+import org.flywaydb.core.Flyway
 import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
+import pureconfig.generic.auto._
 
 import scala.concurrent.ExecutionContext.global
 
+
+
 object ApponeServer {
 
-  def stream[F[_] : ConcurrentEffect](implicit T: Timer[F]): Stream[F, Nothing] = {
+  def initFlyway[F[_]: Sync](): F[Int] = Sync[F].delay {
+    val flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5400/bookswapdb", "su", "password").baselineOnMigrate(true).load()
+    println("inside flyway")
+    flyway.migrate()
+  }
+
+  def stream[F[_] : ConcurrentEffect: ContextShift: Timer]: Stream[F, Nothing] = {
     for {
       client <- BlazeClientBuilder[F](global).stream
+      config <- Stream.eval(LoadConfig[F, Config].load)
+      _ <- Stream.eval(initFlyway())
+      xa <- Stream.resource(Database.transactor(config.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
-      //      bookAlg = BookSwap.buildInstance[F]
+      bookAlg = BookSwap.buildInstance[F](xa)
 
-      // Combine Service Routes into an HttpApp.
-      // Can also be done via a Router if you
-      // want to extract a segments not checked
-      // in the underlying routes.
       httpApp = (
         ApponeRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
-          ApponeRoutes.bookRoutes[F] <+>
+          ApponeRoutes.bookRoutes[F](bookAlg) <+>
           ApponeRoutes.jokeRoutes[F](jokeAlg)
         ).orNotFound
 
-      // With Middlewares in place
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
 
       exitCode <- BlazeServerBuilder[F](global)

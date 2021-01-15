@@ -8,3 +8,13 @@
 1610492097800:compile
 1610492503956:git commit -am "create folder structure"
 1610492524419:git add .
+1610562260904:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("/private/var/folders/14/jmsny25j05gbhd1py7_9g46r0000gn/T/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "/Users/ryanmcavoy/Library/Application Support/JetBrains/IntelliJIdea2020.3/plugins/Scala/repo/org.jetbrains/sbt-structure-extractor/scala_2.12/sbt_1.0/2020.3/jars/sbt-structure-extractor.jar" org.jetbrains.sbt.CreateTasks;*/*:dumpStructure
+1610562431708:compile
+1610620340536:compi;le
+1610620343085:compile
+1610623980054:compil
+1610623982704:compile
+1610626089181:docker-compose up
+1610626128953:run
+1610626298038:compile
+1610626320587:run

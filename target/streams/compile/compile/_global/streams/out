@@ -1,28 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:4:39: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport com.fullstackryan.appone.repo.{HelloWorld, Jokes}[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:4:51: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport com.fullstackryan.appone.repo.{HelloWorld, Jokes}[0m
-[0m[[0m[31merror[0m] [0m[0m                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:8:21: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport cats.effect.{ConcurrentEffect, Timer}[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:8:39: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport cats.effect.{ConcurrentEffect, Timer}[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:11:12: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport fs2.Stream[0m
-[0m[[0m[31merror[0m] [0m[0m           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:12:32: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport org.http4s.client.blaze.BlazeClientBuilder[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:13:29: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport org.http4s.implicits._[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:14:32: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport org.http4s.server.blaze.BlazeServerBuilder[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:15:37: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport org.http4s.server.middleware.Logger[0m
-[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m9 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/repo/BookSwap.scala:21:79: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : F[List[(java.util.UUID, String)]][0m
+[0m[[0m[31merror[0m] [0m[0m required: F[List[com.fullstackryan.appone.model.Book]][0m
+[0m[[0m[31merror[0m] [0m[0m    override def get: F[List[Book]] = BookSwapQueries.getAll.to[List].transact(xa)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

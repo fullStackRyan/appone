@@ -4,15 +4,19 @@ import cats.effect.Sync
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import cats.implicits._
-import com.fullstackryan.appone.repo.{HelloWorld, Jokes}
+import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
+import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
 
 object ApponeRoutes {
 
-  def bookRoutes[F[_]: Sync]: HttpRoutes[F] = {
+  def bookRoutes[F[_]: Sync](B: BookSwap[F]): HttpRoutes[F] = {
     val dsl = new Http4sDsl[F] {}
     import dsl._
     HttpRoutes.of[F] {
-      case GET -> Root / "book" => Ok("book")
+      case GET -> Root / "book" => for {
+        book <- B.get
+        resp <- Ok(book)
+      } yield resp
     }
   }
 

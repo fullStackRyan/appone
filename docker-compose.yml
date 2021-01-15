@@ -1,0 +1,15 @@
+
+version: '3.3'
+services:
+
+  # App Backend PostgreSQL
+  postgres:
+    image: postgres:11.7-alpine
+    environment:
+      POSTGRES_USER: su
+      POSTGRES_PASSWORD: password
+      POSTGRES_URL: jdbc:postgresql://postgres:5400/bookswapdb
+      POSTGRES_DB: bookswapdb
+      POSTGRES_HOST: postgres
+    ports:
+      - "5400:5432"

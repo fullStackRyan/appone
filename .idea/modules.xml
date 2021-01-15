@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/appone.iml" filepath="$PROJECT_DIR$/.idea/modules/appone.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/appone-build.iml" filepath="$PROJECT_DIR$/.idea/modules/appone-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fourthjudge.iml" filepath="$PROJECT_DIR$/.idea/modules/fourthjudge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fourthjudge-build.iml" filepath="$PROJECT_DIR$/.idea/modules/fourthjudge-build.iml" />
     </modules>
   </component>
 </project>
