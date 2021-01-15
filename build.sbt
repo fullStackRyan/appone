@@ -1,8 +1,15 @@
+enablePlugins(JavaAppPackaging)
+
+herokuAppName in Compile := "appone2021"
+
+herokuProcessTypes in Compile := Map(
+  "web" -> "target/universal/stage/bin/appone2021 -Dhttp.port=$PORT"
+)
+
 val Http4sVersion = "0.21.11"
 val CirceVersion = "0.13.0"
 val Specs2Version = "4.10.5"
 val LogbackVersion = "1.2.3"
-
 val doobieVersion = "0.9.0"
 val http4sVersion = "0.21.6"
 val pureconfig = "0.13.0"
@@ -11,10 +18,11 @@ val flywayCore = "6.5.5"
 val catsMTL = "0.7.0"
 val scalactic = "3.2.0"
 
+
 lazy val root = (project in file("."))
   .settings(
-    organization := "com.fullstack",
-    name := "fourthjudge",
+    organization := "com.fullstackryan",
+    name := "appone",
     version := "0.0.1-SNAPSHOT",
     scalaVersion := "2.13.3",
     libraryDependencies ++= Seq(
