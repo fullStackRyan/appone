@@ -41,7 +41,10 @@ object ApponeRoutes {
     resp <- Ok()
   } yield resp
 
+
+
     HttpRoutes.of[F] {
+      case GET -> Root => Ok("APP ONE BACKEND HOME PAGE")
       case GET -> Root / "book" => getBooks()
       case req@POST -> Root / "book" => postABook(req)
       case req@PUT -> Root / "book" => updateABook(req)
