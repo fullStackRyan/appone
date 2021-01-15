@@ -9,7 +9,7 @@ import doobie.util.transactor.Transactor
 import java.util.UUID
 
 trait BookSwap[F[_]] {
-  def get: F[List[(UUID, String)]]
+  def get: F[List[(UUID, String, String, Int)]]
   def post(book: Book): F[Int]
   def update(book: Book): F[Int]
   def delete(book: Book): F[Int]
@@ -20,9 +20,10 @@ object BookSwap {
 
   def buildInstance[F[_]: Sync](xa: Transactor[F]): BookSwap[F] = new BookSwap[F] {
 
-    override def get: F[List[(UUID, String)]] = BookSwapQueries.getAll.to[List].transact(xa)
+    override def get: F[List[(UUID, String, String, Int)]] = BookSwapQueries.getAll.to[List].transact(xa)
 
-    override def post(book: Book): F[Int] = ???
+    override def post(book: Book): F[Int] =
+      BookSwapQueries.insert(book).run.transact(xa)
 
     override def update(book: Book): F[Int] = ???
 

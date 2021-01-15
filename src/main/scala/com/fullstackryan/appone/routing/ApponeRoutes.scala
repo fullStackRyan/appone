@@ -1,27 +1,43 @@
 package com.fullstackryan.appone.routing
 
 import cats.effect.Sync
-import org.http4s.HttpRoutes
-import org.http4s.dsl.Http4sDsl
 import cats.implicits._
+import com.fullstackryan.appone.model.Book
 import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
-import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
+import org.http4s.circe.CirceEntityCodec.{circeEntityDecoder, circeEntityEncoder}
+import org.http4s.dsl.Http4sDsl
+import org.http4s.{HttpRoutes, Request, Response}
+
+import java.util.UUID
 
 object ApponeRoutes {
 
-  def bookRoutes[F[_]: Sync](B: BookSwap[F]): HttpRoutes[F] = {
+
+
+  def bookRoutes[F[_] : Sync](B: BookSwap[F]): HttpRoutes[F] = {
     val dsl = new Http4sDsl[F] {}
     import dsl._
+
+    def getBooks(): F[Response[F]] = for {
+      book <- B.get
+      resp <- Ok(book)
+    } yield resp
+
+  def postABook(req: Request[F]): F[Response[F]] = for {
+    book <- req.as[Book]
+    generatedUUID = UUID.randomUUID()
+    _ <- B.post(Book(generatedUUID, book.title, book.author, book.yearOfRelease))
+    resp <- Ok()
+  } yield resp
+
     HttpRoutes.of[F] {
-      case GET -> Root / "book" => for {
-        book <- B.get
-        resp <- Ok(book)
-      } yield resp
+      case GET -> Root / "book" => getBooks()
+      case req@POST -> Root / "book" => postABook(req)
     }
   }
 
-  def jokeRoutes[F[_]: Sync](J: Jokes[F]): HttpRoutes[F] = {
-    val dsl = new Http4sDsl[F]{}
+  def jokeRoutes[F[_] : Sync](J: Jokes[F]): HttpRoutes[F] = {
+    val dsl = new Http4sDsl[F] {}
     import dsl._
     HttpRoutes.of[F] {
       case GET -> Root / "joke" =>
@@ -32,8 +48,8 @@ object ApponeRoutes {
     }
   }
 
-  def helloWorldRoutes[F[_]: Sync](H: HelloWorld[F]): HttpRoutes[F] = {
-    val dsl = new Http4sDsl[F]{}
+  def helloWorldRoutes[F[_] : Sync](H: HelloWorld[F]): HttpRoutes[F] = {
+    val dsl = new Http4sDsl[F] {}
     import dsl._
     HttpRoutes.of[F] {
       case GET -> Root / "hello" / name =>
