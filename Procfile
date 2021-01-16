@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/appone2021 -Dhttp.port=${PORT}
+web: target/universal/stage/bin/appone -Dhttp.port=${PORT}

@@ -21,10 +21,6 @@ import scala.concurrent.ExecutionContext.global
 object ApponeServer {
 
   def initFlyway[F[_]: Sync](url: String, username: String, password: String): F[Int] = Sync[F].delay {
-
-    println(s"url =====> $url")
-    println(s"username =====> $username")
-    println(s"password =====> $password")
     val flyway = Flyway.configure().dataSource(url, username, password).baselineOnMigrate(true).load()
     println("inside flyway")
     flyway.migrate()
@@ -34,7 +30,6 @@ object ApponeServer {
     for {
       client <- BlazeClientBuilder[F](global).stream
       config <- Stream.eval(LoadConfig[F, Config].load)
-      _ = println(s"config ======> $config")
       _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
