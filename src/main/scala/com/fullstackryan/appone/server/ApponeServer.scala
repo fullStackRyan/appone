@@ -29,6 +29,7 @@ object ApponeServer {
   def stream[F[_] : ConcurrentEffect: ContextShift: Timer]: Stream[F, Nothing] = {
     for {
       client <- BlazeClientBuilder[F](global).stream
+      _ = println(System.getenv("db-config"))
       config <- Stream.eval(LoadConfig[F, Config].load)
       _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))

@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:32:33: not found: value url[0m
+[0m[[0m[31merror[0m] [0m[0m      _ = println(System.getenv(url))[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
