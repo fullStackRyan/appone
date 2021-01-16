@@ -1,2 +1,6 @@
-[debug] downloaded https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.53/jsch-0.1.53.jar
+[debug] downloaded https://repo1.maven.org/maven2/au/com/onegeek/sbt-dotenv_2.12_1.0/2.1.204/sbt-dotenv-2.1.204.pom
+[debug] downloaded https://repo1.maven.org/maven2/au/com/onegeek/sbt-dotenv_2.12_1.0/2.1.204/sbt-dotenv-2.1.204.pom.sha1
+[debug] downloaded https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/au.com.onegeek/sbt-dotenv/scala_2.12/sbt_1.0/2.1.204/ivys/ivy.xml
+[debug] downloaded https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.6.0/jna-5.6.0.pom
+[debug] downloaded https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/au.com.onegeek/sbt-dotenv/scala_2.12/sbt_1.0/2.1.204/jars/sbt-dotenv.jar
+[debug] downloaded https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.6.0/jna-5.6.0.jar

@@ -26,6 +26,7 @@ object Config {
     })
     src.use { source: BufferedSource =>
       val dbConf: String = source.getLines().mkString
+      println(s"dbConf =====> $dbConf")
       parser.decode[Config](dbConf) match {
         case Left(value) => IO.raiseError[Config](new Exception(s"failed to load config: $value"))
         case Right(value) => IO.pure(value)

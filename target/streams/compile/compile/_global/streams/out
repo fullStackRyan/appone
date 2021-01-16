@@ -1,6 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/routing/ApponeRoutes.scala:30:13: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : F[org.http4s.Response[F]][0m
-[0m[[0m[31merror[0m] [0m[0m required: org.http4s.Response[F][0m
-[0m[[0m[31merror[0m] [0m[0m  } yield Ok(resp)[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

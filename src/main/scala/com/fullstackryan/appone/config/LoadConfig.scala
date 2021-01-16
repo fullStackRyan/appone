@@ -20,9 +20,9 @@ object LoadConfig {
     new LoadConfig[F, TConfig] {
       def load: F[TConfig] = ApplicativeError[F, Throwable].fromEither {
         ConfigSource.default
+          .at("appone")
           .load[TConfig]
           .leftMap(ConfigReaderException(_))
       }
     }
-
 }

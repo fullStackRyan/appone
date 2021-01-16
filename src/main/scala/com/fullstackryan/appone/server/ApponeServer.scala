@@ -20,8 +20,8 @@ import scala.concurrent.ExecutionContext.global
 
 object ApponeServer {
 
-  def initFlyway[F[_]: Sync](): F[Int] = Sync[F].delay {
-    val flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5400/bookswapdb", "su", "password").baselineOnMigrate(true).load()
+  def initFlyway[F[_]: Sync](url: String, username: String, password: String): F[Int] = Sync[F].delay {
+    val flyway = Flyway.configure().dataSource(url, username, password).baselineOnMigrate(true).load()
     println("inside flyway")
     flyway.migrate()
   }
@@ -30,12 +30,11 @@ object ApponeServer {
     for {
       client <- BlazeClientBuilder[F](global).stream
       config <- Stream.eval(LoadConfig[F, Config].load)
-      _ <- Stream.eval(initFlyway())
+      _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
       bookAlg = BookSwap.buildInstance[F](xa)
-
       httpApp = (
         ApponeRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
           ApponeRoutes.bookRoutes[F](bookAlg) <+>
