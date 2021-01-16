@@ -1,4 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:32:33: not found: value url[0m
-[0m[[0m[31merror[0m] [0m[0m      _ = println(System.getenv(url))[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:26:56: unclosed character literal (or use " for string literal "su")[0m
+[0m[[0m[31merror[0m] [0m[0m    val flyway = Flyway.configure().dataSource(url, 'su', password).baselineOnMigrate(true).load()[0m
+[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:26:53: symbol literal is deprecated; use Symbol("su") instead[0m
+[0m[[0m[31merror[0m] [0m[0m    val flyway = Flyway.configure().dataSource(url, 'su', password).baselineOnMigrate(true).load()[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
