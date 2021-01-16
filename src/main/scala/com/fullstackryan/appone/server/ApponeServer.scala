@@ -30,7 +30,7 @@ object ApponeServer {
     for {
       client <- BlazeClientBuilder[F](global).stream
       config <- Stream.eval(LoadConfig[F, Config].load)
-      _ = println(sys.env.get("DATABASE_URL"))
+      _ = println(s"=========> ${sys.env.get("DATABASE_URL")}")
       _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
