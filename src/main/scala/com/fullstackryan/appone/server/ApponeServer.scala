@@ -27,7 +27,7 @@ object ApponeServer {
   }
 
   def prodConfig(): Config = {
-        val dbUri = new URI(System.getenv("DATABASE_URL"))
+        val dbUri = new URI(System.getenv("JDBC_DATABASE_URL"))
         val username = dbUri.getUserInfo.split(":")(0)
         val password = dbUri.getUserInfo.split(":")(1)
         val dbUrl = "jdbc:postgresql://" + dbUri.getHost + dbUri.getPath
