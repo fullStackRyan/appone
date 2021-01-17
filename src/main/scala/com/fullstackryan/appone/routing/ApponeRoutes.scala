@@ -3,7 +3,7 @@ package com.fullstackryan.appone.routing
 import cats.effect.Sync
 import cats.implicits._
 import com.fullstackryan.appone.model.Book
-import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
+import com.fullstackryan.appone.repo.BookSwap
 import org.http4s.circe.CirceEntityCodec.{circeEntityDecoder, circeEntityEncoder}
 import org.http4s.dsl.Http4sDsl
 import org.http4s.{HttpRoutes, Request, Response}
@@ -17,7 +17,7 @@ object ApponeRoutes {
     val dsl = new Http4sDsl[F] {}
     import dsl._
 
-    def getBooks(): F[Response[F]] = for {
+    def getBooks: F[Response[F]] = for {
       book <- B.get
       resp <- Ok(book)
     } yield resp
@@ -42,37 +42,13 @@ object ApponeRoutes {
   } yield resp
 
 
-
     HttpRoutes.of[F] {
       case GET -> Root => Ok("APP ONE BACKEND HOME PAGE")
-      case GET -> Root / "book" => getBooks()
+      case GET -> Root / "book" => getBooks
       case req@POST -> Root / "book" => postABook(req)
       case req@PUT -> Root / "book" => updateABook(req)
       case req@DELETE -> Root / "book" => deleteABook(req)
     }
   }
 
-  def jokeRoutes[F[_] : Sync](J: Jokes[F]): HttpRoutes[F] = {
-    val dsl = new Http4sDsl[F] {}
-    import dsl._
-    HttpRoutes.of[F] {
-      case GET -> Root / "joke" =>
-        for {
-          joke <- J.get
-          resp <- Ok(joke)
-        } yield resp
-    }
-  }
-
-  def helloWorldRoutes[F[_] : Sync](H: HelloWorld[F]): HttpRoutes[F] = {
-    val dsl = new Http4sDsl[F] {}
-    import dsl._
-    HttpRoutes.of[F] {
-      case GET -> Root / "hello" / name =>
-        for {
-          greeting <- H.hello(HelloWorld.Name(name))
-          resp <- Ok(greeting)
-        } yield resp
-    }
-  }
 }

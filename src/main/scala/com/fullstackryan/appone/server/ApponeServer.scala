@@ -1,10 +1,9 @@
 package com.fullstackryan.appone.server
 
 import cats.effect.{ConcurrentEffect, ContextShift, Sync, Timer}
-import cats.implicits._
 import com.fullstackryan.appone.config.{Config, DbConfig, ServerConfig}
 import com.fullstackryan.appone.database.Database
-import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
+import com.fullstackryan.appone.repo.BookSwap
 import com.fullstackryan.appone.routing.ApponeRoutes
 import fs2.Stream
 import org.flywaydb.core.Flyway
@@ -39,20 +38,15 @@ object ApponeServer {
 
   def stream[F[_] : ConcurrentEffect : ContextShift : Timer]: Stream[F, Nothing] = {
     for {
-      client <- BlazeClientBuilder[F](global).stream
+      _ <- BlazeClientBuilder[F](global).stream
 //    config <- Stream.eval(LoadConfig[F, Config].load)
       conifg = prodConfig()
       _ <- Stream.eval(initFlyway(conifg.dbConfig.url, conifg.dbConfig.username, conifg.dbConfig.password))
       xa <- Stream.resource(Database.transactor(conifg.dbConfig))
 
-      helloWorldAlg = HelloWorld.impl[F]
-      jokeAlg = Jokes.impl[F](client)
       bookAlg = BookSwap.buildInstance[F](xa)
-      httpApp = (
-        ApponeRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
-          ApponeRoutes.bookRoutes[F](bookAlg) <+>
-          ApponeRoutes.jokeRoutes[F](jokeAlg)
-        ).orNotFound
+
+      httpApp = ApponeRoutes.bookRoutes[F](bookAlg).orNotFound
 
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
        port = Properties.envOrElse("PORT", "8080").toInt

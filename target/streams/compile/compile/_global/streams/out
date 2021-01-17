@@ -1,7 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:5:59: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport com.fullstackryan.appone.config.{Config, DbConfig, LoadConfig, ServerConfig}[0m
-[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:15:32: Unused import[0m
-[0m[[0m[31merror[0m] [0m[0mimport pureconfig.generic.auto._[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:4:23: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport cats.implicits._[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ryanmcavoy/fullStackRyan/appone/src/main/scala/com/fullstackryan/appone/server/ApponeServer.scala:42:7: parameter value client in anonymous function is never used[0m
+[0m[[0m[31merror[0m] [0m[0m      client <- BlazeClientBuilder[F](global).stream[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
 [0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
