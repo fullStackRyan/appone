@@ -14,7 +14,7 @@ import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
 import pureconfig.generic.auto._
 
-import java.net.URI
+//import java.net.URI
 import scala.concurrent.ExecutionContext.global
 
 
