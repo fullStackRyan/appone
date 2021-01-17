@@ -2,7 +2,8 @@ package com.fullstackryan.appone.server
 
 import cats.effect.{ConcurrentEffect, ContextShift, Sync, Timer}
 import cats.implicits._
-import com.fullstackryan.appone.config.{Config, DbConfig, LoadConfig, ServerConfig}
+import com.fullstackryan.appone.config.{Config, DbConfig, ServerConfig}
+//import com.fullstackryan.appone.config.{Config, DbConfig, LoadConfig, ServerConfig}
 import com.fullstackryan.appone.database.Database
 import com.fullstackryan.appone.repo.{BookSwap, HelloWorld, Jokes}
 import com.fullstackryan.appone.routing.ApponeRoutes
@@ -12,7 +13,7 @@ import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
-import pureconfig.generic.auto._
+//import pureconfig.generic.auto._
 
 import java.net.URI
 import scala.concurrent.ExecutionContext.global
