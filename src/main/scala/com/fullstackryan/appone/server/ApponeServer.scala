@@ -36,6 +36,10 @@ object ApponeServer {
 //    val username = System.getenv("JDBC_DATABASE_USERNAME")
 //    val password = System.getenv("JDBC_DATABASE_PASSWORD")
 
+    System.err.println("Hello, logs!")
+    System.err.println(System.getenv("JDBC_DATABASE_URL"))
+    System.err.println(System.getenv("JDBC_DATABASE_USERNAME"))
+
     Config(ServerConfig(5432, "ec2-52-17-53-249.eu-west-1.compute.amazonaws.com"), DbConfig("ec2-52-17-53-249.eu-west-1.compute.amazonaws.com:5432", "bfzsxjhkfqgdtm", "80f283335a2ff9247dffc3b937b90a77f120c8cf8cf9db432c1f7e9cb7b0fcb6", 10))
   }
 
