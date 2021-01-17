@@ -39,7 +39,7 @@ object ApponeServer {
     for {
       client <- BlazeClientBuilder[F](global).stream
       // below line loads config from application.conf
-      config <- Stream.eval(LoadConfig[F, Config].load)
+//      config <- Stream.eval(LoadConfig[F, Config].load)
       // This is meant to check if DATABASE_URL is dev or prd
 //      isProdConfig = if (config.dbConfig.url.contains("localhost")) config else prodConfig()
       // Below line hopefully passes correct prd or dev config into initFlyway to get a connnection
