@@ -6,8 +6,7 @@
 
 At the time of building this, I am a Junior Scala Developer. About
 half a year ago I started a new job where the company programmes in Scala
-with a functional tech stack. These 12 apps will help me understand the various technologies
-we use. 
+with a functional tech stack. 
 
 ## Introduction to App
 
@@ -54,6 +53,8 @@ have two files: `dev.env` and `prd.env`. I would have something which ran `sourc
 Unfortunately this cannot be achieved as I could not store variables statically in that location/file as Heroku updates its variables every so often, 
 meaning the variables within `prd.env` would become out of date.
 
+Addtionally my original plan would be against the https://www.12factor.net/ coding principles.
+
 ```scala
  def prodConfig(): Config = {
     val dbUri = new URI(System.getenv("DATABASE_URL"))
@@ -64,4 +65,5 @@ meaning the variables within `prd.env` would become out of date.
     Config(ServerConfig(5432, dbUri.getHost), DbConfig(dbUrl, username, password, 10))
   }
 ```
-Instead of using LoadConfig I used the above function to capture and chop the `DATABASE_URL` which is injected by Heroku. 
+Instead of using LoadConfig I used the above function to capture and chop the `DATABASE_URL` which is injected by Heroku, I then pass that
+to the various parts of config that need it.
