@@ -36,7 +36,7 @@ object ApponeServer {
         val password = dbUri.getUserInfo.split(":")(1)
         val dbUrl = "jdbc:postgresql://" + dbUri.getHost + dbUri.getPath
 
-        Config(ServerConfig(8080, dbUri.getHost), DbConfig(dbUrl, username, password, 10))
+        Config(ServerConfig(5432, dbUri.getHost), DbConfig(dbUrl, username, password, 10))
     }
   }
 
@@ -44,7 +44,7 @@ object ApponeServer {
     for {
       client <- BlazeClientBuilder[F](global).stream
       config <- Stream.eval(LoadConfig[F, Config].load)
-      dev= prodOrDev(config)
+      dev = prodOrDev(config)
       _ <- Stream.eval(initFlyway(dev.dbConfig.url, dev.dbConfig.username, dev.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
