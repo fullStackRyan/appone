@@ -20,7 +20,7 @@ import scala.concurrent.ExecutionContext.global
 
 object ApponeServer {
 
-  def initFlyway[F[_] : Sync](url: String, username: String, password: String): F[Int] = Sync[F].delay {
+  def initFlyway[F[_] : Sync]: F[Int] = Sync[F].delay {
     val flyway = Flyway.configure().dataSource("jdbc:postgresql://ec2-52-17-53-249.eu-west-1.compute.amazonaws.com:5432/ddtlm7p23o6ils", "bfzsxjhkfqgdtm", "80f283335a2ff9247dffc3b937b90a77f120c8cf8cf9db432c1f7e9cb7b0fcb6").baselineOnMigrate(true).load()
     println("inside flyway")
     flyway.migrate()
@@ -43,7 +43,7 @@ object ApponeServer {
       // This is meant to check if DATABASE_URL is dev or prd
       isProdConfig = if (config.dbConfig.url.contains("localhost")) config else prodConfig()
       // Below line hopefully passes correct prd or dev config into initFlyway to get a connnection
-      _ <- Stream.eval(initFlyway(isProdConfig.dbConfig.url, isProdConfig.dbConfig.username, isProdConfig.dbConfig.password))
+      _ <- Stream.eval(initFlyway)
       xa <- Stream.resource(Database.transactor(isProdConfig.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
