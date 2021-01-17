@@ -1,3 +1,5 @@
+import scala.sys.SystemProperties.headless.disable
+
 enablePlugins(JavaAppPackaging)
 
 herokuAppName in Compile := "appone2021"
@@ -45,7 +47,8 @@ lazy val root = (project in file("."))
       "com.github.pureconfig" %% "pureconfig" % pureconfig,
       "org.slf4j" % "slf4j-api" % slf4j,
       "org.flywaydb" % "flyway-core" % flywayCore,
-      "org.typelevel" %% "cats-mtl-core" % catsMTL
+      "org.typelevel" %% "cats-mtl-core" % catsMTL,
+       "org.scalatest" %% "scalatest" % "3.2.2" % "test"
     ),
     addCompilerPlugin("org.typelevel" %% "kind-projector"     % "0.10.3"),
     addCompilerPlugin("com.olegpy"    %% "better-monadic-for" % "0.3.1")
