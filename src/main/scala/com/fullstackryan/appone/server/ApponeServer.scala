@@ -21,7 +21,7 @@ import scala.concurrent.ExecutionContext.global
 object ApponeServer {
 
   def initFlyway[F[_] : Sync](url: String, username: String, password: String): F[Int] = Sync[F].delay {
-    val flyway = Flyway.configure().dataSource(url, username, password).baselineOnMigrate(true).load()
+    val flyway = Flyway.configure().dataSource("jdbc:postgresql://ec2-52-17-53-249.eu-west-1.compute.amazonaws.com:5432/ddtlm7p23o6ils", "bfzsxjhkfqgdtm", "80f283335a2ff9247dffc3b937b90a77f120c8cf8cf9db432c1f7e9cb7b0fcb6").baselineOnMigrate(true).load()
     println("inside flyway")
     flyway.migrate()
   }
