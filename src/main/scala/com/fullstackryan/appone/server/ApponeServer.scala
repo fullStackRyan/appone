@@ -38,10 +38,13 @@ object ApponeServer {
   def stream[F[_] : ConcurrentEffect : ContextShift : Timer]: Stream[F, Nothing] = {
     for {
       client <- BlazeClientBuilder[F](global).stream
+      // below line loads config from application.conf
       config <- Stream.eval(LoadConfig[F, Config].load)
+      // This is meant to check if DATABASE_URL is dev or prd
       isProdConfig = if (config.dbConfig.url.contains("localhost")) config else prodConfig()
+      // Below line hopefully passes correct prd or dev config into initFlyway to get a connnection
       _ <- Stream.eval(initFlyway(isProdConfig.dbConfig.url, isProdConfig.dbConfig.username, isProdConfig.dbConfig.password))
-      xa <- Stream.resource(Database.transactor(config.dbConfig))
+      xa <- Stream.resource(Database.transactor(isProdConfig.dbConfig))
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
       bookAlg = BookSwap.buildInstance[F](xa)
