@@ -41,10 +41,10 @@ object ApponeServer {
       // below line loads config from application.conf
       config <- Stream.eval(LoadConfig[F, Config].load)
       // This is meant to check if DATABASE_URL is dev or prd
-      isProdConfig = if (config.dbConfig.url.contains("localhost")) config else prodConfig()
+//      isProdConfig = if (config.dbConfig.url.contains("localhost")) config else prodConfig()
       // Below line hopefully passes correct prd or dev config into initFlyway to get a connnection
       _ <- Stream.eval(initFlyway)
-      xa <- Stream.resource(Database.transactor(isProdConfig.dbConfig))
+      xa <- Stream.resource(Database.transactor)
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
       bookAlg = BookSwap.buildInstance[F](xa)
