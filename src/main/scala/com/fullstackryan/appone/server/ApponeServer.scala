@@ -12,6 +12,8 @@ import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
+
+import scala.util.Properties
 //import pureconfig.generic.auto._
 
 import java.net.URI
@@ -53,9 +55,9 @@ object ApponeServer {
         ).orNotFound
 
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
-
+       port = Properties.envOrElse("PORT", "8080").toInt
       exitCode <- BlazeServerBuilder[F](global)
-        .bindHttp(8080, "0.0.0.0")
+        .bindHttp(port, "0.0.0.0")
         .withHttpApp(finalHttpApp)
         .serve
     } yield exitCode
