@@ -1,7 +1,7 @@
 package com.fullstackryan.appone.server
 
 import cats.effect.{ConcurrentEffect, ContextShift, Sync, Timer}
-import com.fullstackryan.appone.config.{Config, DbConfig, LoadConfig, ServerConfig}
+import com.fullstackryan.appone.config.{Config, DbConfig, ServerConfig}
 import com.fullstackryan.appone.database.Database
 import com.fullstackryan.appone.repo.BookSwap
 import com.fullstackryan.appone.routing.ApponeRoutes
@@ -13,7 +13,7 @@ import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
 
 import scala.util.Properties
-import pureconfig.generic.auto._
+//import pureconfig.generic.auto._
 
 import java.net.URI
 import scala.concurrent.ExecutionContext.global
@@ -27,20 +27,30 @@ object ApponeServer {
     flyway.migrate()
   }
 
-  def prodConfig(): Config = {
-    val dbUri = new URI(System.getenv("DATABASE_URL"))
-    val username = dbUri.getUserInfo.split(":")(0)
-    val password = dbUri.getUserInfo.split(":")(1)
-    val dbUrl = "jdbc:postgresql://" + dbUri.getHost + dbUri.getPath
+  def devOrProdConfig(): Config = {
 
-    Config(ServerConfig(5432, dbUri.getHost), DbConfig(dbUrl, username, password, 10))
+    if (System.getenv("ENV") == "dev") {
+      val username = System.getenv("DATABASE_USERNAME")
+      val password = System.getenv("DATABASE_PASSWORD")
+      val url = System.getenv("DATABASE_URL")
+
+      Config(ServerConfig(5400, "localhost:8080"), DbConfig(url, username, password, 10))
+    } else {
+      val dbUri = new URI(System.getenv("DATABASE_URL"))
+      val username = dbUri.getUserInfo.split(":")(0)
+      val password = dbUri.getUserInfo.split(":")(1)
+      val dbUrl = "jdbc:postgresql://" + dbUri.getHost + dbUri.getPath
+
+      Config(ServerConfig(5432, dbUri.getHost), DbConfig(dbUrl, username, password, 10))
+    }
+
   }
 
   def stream[F[_] : ConcurrentEffect : ContextShift : Timer]: Stream[F, Nothing] = {
     for {
       _ <- BlazeClientBuilder[F](global).stream
-      config <- Stream.eval(LoadConfig[F, Config].load)
-      //      config = prodConfig()
+      //      config <- Stream.eval(LoadConfig[F, Config].load)
+      config = devOrProdConfig()
       _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
 
