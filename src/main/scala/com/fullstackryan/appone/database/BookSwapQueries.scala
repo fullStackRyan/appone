@@ -1,7 +1,7 @@
 package com.fullstackryan.appone.database
 
 
-import com.fullstackryan.appone.model.Book
+import com.fullstackryan.appone.model.{Book, BookDB}
 import doobie.implicits._
 import doobie.postgres.implicits._
 
@@ -16,7 +16,7 @@ object BookSwapQueries {
       .query[(UUID, String, String, Int)]
   }
 
-  def insert(book: Book): doobie.Update0 = {
+  def insert(book: BookDB): doobie.Update0 = {
     sql"""
          |INSERT INTO book (
          |  id,
@@ -38,7 +38,7 @@ object BookSwapQueries {
     sql"""
          |UPDATE book
          |SET title = ${book.title}, author = ${book.author}, yearOfRelease = ${book.yearOfRelease}
-         |WHERE id = ${book.id}
+         |WHERE title = ${book.title}
        """.stripMargin
       .update
   }
@@ -46,7 +46,7 @@ object BookSwapQueries {
   def delete(book: Book): doobie.Update0 = {
     sql"""
          |DELETE FROM book
-         |WHERE id=${book.id}
+         |WHERE title=${book.title}
        """.stripMargin
       .update
   }

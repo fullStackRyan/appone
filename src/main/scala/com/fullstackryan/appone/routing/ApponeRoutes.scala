@@ -2,7 +2,7 @@ package com.fullstackryan.appone.routing
 
 import cats.effect.Sync
 import cats.implicits._
-import com.fullstackryan.appone.model.Book
+import com.fullstackryan.appone.model.{Book, BookDB}
 import com.fullstackryan.appone.repo.BookSwap
 import org.http4s.circe.CirceEntityCodec.{circeEntityDecoder, circeEntityEncoder}
 import org.http4s.dsl.Http4sDsl
@@ -22,24 +22,25 @@ object ApponeRoutes {
       resp <- Ok(book)
     } yield resp
 
-  def postABook(req: Request[F]): F[Response[F]] = for {
-    book <- req.as[Book]
-    generatedUUID = UUID.randomUUID()
-    _ <- B.post(Book(generatedUUID, book.title, book.author, book.yearOfRelease))
-    resp <- Ok()
-  } yield resp
+    def postABook(req: Request[F]): F[Response[F]] =
+      for {
+        book <- req.as[Book]
+        generatedUUID = UUID.randomUUID()
+        _ <- B.post(BookDB(generatedUUID, book.title, book.author, book.yearOfRelease))
+        resp <- Ok()
+      } yield resp
 
-  def updateABook(req: Request[F]): F[Response[F]] = for {
-    book <- req.as[Book]
-    _ <- B.update(book)
-    resp <- Ok()
-  } yield resp
+    def updateABook(req: Request[F]): F[Response[F]] = for {
+      book <- req.as[Book]
+      _ <- B.update(book)
+      resp <- Ok()
+    } yield resp
 
-  def deleteABook(req: Request[F]): F[Response[F]] = for {
-    book <- req.as[Book]
-    _ <- B.delete(book)
-    resp <- Ok()
-  } yield resp
+    def deleteABook(req: Request[F]): F[Response[F]] = for {
+      book <- req.as[Book]
+      _ <- B.delete(book)
+      resp <- Ok()
+    } yield resp
 
 
     HttpRoutes.of[F] {

@@ -1,7 +1,7 @@
 package com.fullstackryan.appone.server
 
 import cats.effect.{ConcurrentEffect, ContextShift, Sync, Timer}
-import com.fullstackryan.appone.config.{Config, DbConfig, ServerConfig}
+import com.fullstackryan.appone.config.{Config, DbConfig, LoadConfig, ServerConfig}
 import com.fullstackryan.appone.database.Database
 import com.fullstackryan.appone.repo.BookSwap
 import com.fullstackryan.appone.routing.ApponeRoutes
@@ -13,7 +13,7 @@ import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
 
 import scala.util.Properties
-//import pureconfig.generic.auto._
+import pureconfig.generic.auto._
 
 import java.net.URI
 import scala.concurrent.ExecutionContext.global
@@ -39,17 +39,17 @@ object ApponeServer {
   def stream[F[_] : ConcurrentEffect : ContextShift : Timer]: Stream[F, Nothing] = {
     for {
       _ <- BlazeClientBuilder[F](global).stream
-//    config <- Stream.eval(LoadConfig[F, Config].load)
-      conifg = prodConfig()
-      _ <- Stream.eval(initFlyway(conifg.dbConfig.url, conifg.dbConfig.username, conifg.dbConfig.password))
-      xa <- Stream.resource(Database.transactor(conifg.dbConfig))
+      config <- Stream.eval(LoadConfig[F, Config].load)
+      //      config = prodConfig()
+      _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
+      xa <- Stream.resource(Database.transactor(config.dbConfig))
 
       bookAlg = BookSwap.buildInstance[F](xa)
 
       httpApp = ApponeRoutes.bookRoutes[F](bookAlg).orNotFound
 
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
-       port = Properties.envOrElse("PORT", "8080").toInt
+      port = Properties.envOrElse("PORT", "8080").toInt
       exitCode <- BlazeServerBuilder[F](global)
         .bindHttp(port, "0.0.0.0")
         .withHttpApp(finalHttpApp)
