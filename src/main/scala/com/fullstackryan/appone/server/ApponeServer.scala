@@ -49,12 +49,11 @@ object ApponeServer {
   def stream[F[_] : ConcurrentEffect : ContextShift : Timer]: Stream[F, Nothing] = {
     for {
       _ <- BlazeClientBuilder[F](global).stream
-      //      config <- Stream.eval(LoadConfig[F, Config].load)
       config = devOrProdConfig()
       _ <- Stream.eval(initFlyway(config.dbConfig.url, config.dbConfig.username, config.dbConfig.password))
       xa <- Stream.resource(Database.transactor(config.dbConfig))
-
       bookAlg = BookSwap.buildInstance[F](xa)
+
 
       httpApp = ApponeRoutes.bookRoutes[F](bookAlg).orNotFound
 
