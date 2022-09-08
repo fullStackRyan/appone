@@ -8,10 +8,6 @@ At the time of building this, I am a Junior Scala Developer. About
 half a year ago I started a new job where the company programmes in Scala
 with a functional tech stack. 
 
-## Introduction to App
-
-My New Year's Resolution is to build 12 Scala Apps in 2021, each better than the last. This is appone!
-
 The idea of this app is simple and follow CRUD format:
 
 1. POST a book
